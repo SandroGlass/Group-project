@@ -66,6 +66,7 @@ svg#chart-survivor{
     border: 1px solid #ccc;
     background-color: azure;
     border-radius: 4px;
+    color: black;
 }
 .tooltip{
     position:absolute;
@@ -77,5 +78,6 @@ svg#chart-survivor{
     box-shadow:0px 2px 4px rgba(0, 0, 0, 0.2);
     pointer-events:none;
     display:none;
+    color: black
 
 }
