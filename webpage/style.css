@@ -31,11 +31,11 @@ body {
 .hidden{
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 3s ease-out, transform 3s ease-out;
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
 }
 .visible{
     opacity: 1;
-    transition: opacity 3s ease-in;
+    transition: opacity 1.5s ease-in;
     transform: translateY(20px);
 }
 p{
@@ -80,4 +80,42 @@ svg#chart-survivor{
     display:none;
     color: black
 
+}
+#scrolly{
+    position: relative;
+}
+.scroll_graphi{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: auto;
+    width: 100%;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+.scroll_graphic.is-fixed{
+    bottom: 0;
+    top: auto;
+}
+.scroll_graphic .chart1{
+    position: absolute;
+    right: 1 rem;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.scroll_text{
+    padding: 0 1rem;
+    max-width: 30 rem;
+}
+.step{
+    opacity: 0;
+    padding: 1 rem;
+    .step.is-active{
+        opacity: 1;
+    }
 }

@@ -75,7 +75,7 @@ d3.csv("survivor_data.csv").then(data=>{
         .attr("height", height)
         .attr("fill", "none")
         .attr("pointer-events", "all")
-        .on("mouseover", (event,d)=>{
+        .on("mouseover", (event, d)=>{
             svg.append("text")
             .attr("id", "tooltip")
             .attr("x", xScale(d.year)+10)
@@ -110,7 +110,7 @@ d3.csv("survivor_data.csv").then(data=>{
         .attr("height", height)
         .attr("fill", "none")
         .attr("pointer-events", "all")
-        .on("mouseover", (event,d)=>{
+        .on("mouseover", (event, d)=>{
             tooltip
                 .style("left", `${event.pageX+10}px`)
                 .style("top", `${event.pageY-20}px`)
