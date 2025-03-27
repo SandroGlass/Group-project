@@ -1,0 +1,380 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.6;
+    color: aliceblue;
+    background-color: rgb(41, 42, 42);
+    overflow-x: hidden;
+    width: 100%;
+    font-size: 20px;
+}
+
+main {
+    width: 100%;
+}
+
+#intro {
+    padding: 2rem 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(41, 42, 42);
+    min-height: 100vh;
+}
+
+.intro__inner {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Animation classes */
+.fade-element {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 3s ease-out, transform 3s ease-out;
+}
+
+.fade-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.chart-container {
+    width: 100%;
+    height: 650px;
+    margin: 1rem 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 3s ease-out, transform 3s ease-out;
+    background-color: rgba(60, 60, 60, 0.3);
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.chart-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.intro__inner h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: aliceblue;
+    text-align: center;
+}
+
+.post-charts {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 3s ease-out, transform 3s ease-out;
+    padding: 0 1rem;
+}
+
+.post-charts.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: aliceblue;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: aliceblue;
+}
+
+h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    color: aliceblue;
+}
+
+p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+#scrolly {
+    width: 100%;
+    background-color: rgb(41, 42, 42);
+}
+
+.scrolly__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.sticky-thing {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(41, 42, 42);
+    padding: 1rem 0;
+    z-index: 1;
+}
+
+#map-container {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(50, 51, 51);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+article {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.step {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 0 50vh 0;
+    padding: 1rem;
+    background-color: rgba(60, 60, 60, 0.7);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.step:last-child {
+    margin-bottom: 2rem;
+}
+
+.step.is-active {
+    background-color: rgba(80, 80, 80, 0.9);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.country {
+    fill: rgb(60, 61, 61);
+    stroke: rgb(90, 91, 91);
+    stroke-width: 0.5px;
+}
+
+.ukraine {
+    fill: rgb(70, 71, 71);
+    stroke: aliceblue;
+    stroke-width: 3px !important;
+}
+
+.facility {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.facility:hover {
+    stroke: aliceblue;
+    stroke-width: 1.5px;
+}
+
+.tooltip {
+    position: absolute;
+    padding: 8px;
+    background-color: rgb(60, 60, 60);
+    color: aliceblue;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    font-size: 12px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 10;
+    max-width: 200px;
+}
+
+.legend {
+    background-color: rgba(60, 60, 60, 0.8);
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    color: aliceblue;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.legend-color {
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
+    border-radius: 50%;
+}
+
+.legend-label {
+    font-size: 12px;
+}
+
+#outro {
+    padding: 2rem 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+.outro__inner {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Section for individual intro elements */
+.intro-section {
+    min-height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    /* Reduced padding */
+    margin-bottom: 0.5rem;
+    /* Reduced margin */
+}
+
+@media (min-width: 768px) {
+    #intro {
+        padding: 10vh 2rem;
+        min-height: 100vh;
+    }
+
+    .chart-container {
+        height: 650px;
+        margin: 2rem 0;
+    }
+
+    .intro__inner h3 {
+        font-size: 1.7rem;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    h3 {
+        font-size: 1.7rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+    }
+
+    .scrolly__inner {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .sticky-thing {
+        width: 60%;
+        height: 100vh;
+        padding: 0;
+    }
+
+    #map-container {
+        width: 90%;
+    }
+
+    article {
+        width: 40%;
+        padding: 0 2rem;
+    }
+
+    .step {
+        margin: 0 0 60vh 0;
+        max-width: 500px;
+        text-align: left;
+    }
+
+    .step:last-child {
+        margin-bottom: 20vh;
+    }
+
+    .legend-item {
+        margin-bottom: 5px;
+    }
+
+    .legend-color {
+        width: 15px;
+        height: 15px;
+        margin-right: 8px;
+    }
+
+    .legend-label {
+        font-size: 12px;
+    }
+
+    #outro {
+        padding: 4rem 2rem;
+    }
+
+    .outro__inner {
+        max-width: 800px;
+    }
+}
+
+#section-h3-1 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* Title is positioned at top, not scrolling with content */
+#section-title {
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    z-index: 10;
+    min-height: auto;
+    padding: 1rem;
+    text-align: center;
+    transition: opacity 1s ease;
+}
+
+/* Make intro sections closer together */
+#intro .intro-section {
+    min-height: 60vh;
+    /* Reduced from 100vh */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+/* Add padding to account for fixed title */
+#section-paragraph {
+    padding-top: 130px;
+}

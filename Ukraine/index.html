@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ukraine's Nuclear Facilities (1994)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.2.0/scrollama.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <section id="intro">
+            <!-- Title always visible -->
+            <div class="intro-section" id="section-title">
+                <h1>Ukraine's Nuclear Facilities in 1994</h1>
+            </div>
+
+            <!-- First scrollable section -->
+            <div class="intro-section" id="section-paragraph">
+                <div class="fade-element">
+                    <p>Following the collapse of the Soviet Union, Ukraine inherited one of the world's largest nuclear
+                        arsenals.</p>
+                </div>
+            </div>
+
+            <!-- Second scrollable section -->
+            <div class="intro-section" id="section-h3-1">
+                <div class="fade-element">
+                    <h3>In 1994, Ukraine had world's third largest nuclear arsenal</h3>
+                </div>
+            </div>
+
+            <!-- Chart sections below - keep these the same -->
+            <div class="intro-section" id="section-chart-1">
+                <div id="chart-container-1994" class="chart-container"></div>
+            </div>
+
+            <div class="intro-section" id="section-h3-2">
+                <div class="fade-element">
+                    <h3>By 2001, it was gone</h3>
+                </div>
+            </div>
+
+            <div class="intro-section" id="section-chart-2">
+                <div id="chart-container-2001" class="chart-container"></div>
+            </div>
+
+            <div class="intro-section" id="section-final">
+                <p class="post-charts">This map explores the various nuclear and military facilities that existed in
+                    Ukraine in 1994.</p>
+            </div>
+        </section>
+
+        <section id="scrolly">
+            <div class="scrolly__inner">
+                <div class="sticky-thing">
+                    <div id="map-container"></div>
+                    <div id="tooltip" class="tooltip"></div>
+                </div>
+                <article>
+                    <div class="step" data-step="all">
+                        <h3>Overview of All Facilities</h3>
+                        <p>After the collapse of the Soviet Union in 1991, Ukraine inherited the third-largest nuclear
+                            arsenal in the world. This map shows all nuclear and military facilities in Ukraine as of
+                            1994, before the country agreed to denuclearize under the Budapest Memorandum.</p>
+                    </div>
+                    <div class="step" data-step="nuclear-power">
+                        <h3>Nuclear Power Plants</h3>
+                        <p>Ukraine operated several nuclear power plants, including the infamous Chornobyl plant which
+                            experienced a catastrophic accident in 1986. These plants provided a significant portion of
+                            Ukraine's electricity.</p>
+                    </div>
+                    <div class="step" data-step="missiles">
+                        <h3>Strategic Missile Divisions</h3>
+                        <p>Ukraine possessed intercontinental ballistic missiles (ICBMs) with nuclear warheads,
+                            primarily SS-19 and SS-24 missiles, stationed at several missile bases throughout the
+                            country.</p>
+                    </div>
+                    <div class="step" data-step="warheads">
+                        <h3>Nuclear Warhead Storage</h3>
+                        <p>Several facilities across Ukraine were used to store nuclear warheads. These sites were among
+                            the primary concerns during denuclearization negotiations.</p>
+                    </div>
+                    <div class="step" data-step="research">
+                        <h3>Nuclear Research Institutes</h3>
+                        <p>Ukraine maintained research facilities that conducted scientific work related to nuclear
+                            energy and technology, continuing the Soviet tradition of nuclear research.</p>
+                    </div>
+                    <div class="step" data-step="industrial">
+                        <h3>Military-Industrial Enterprises</h3>
+                        <p>Ukraine inherited major military-industrial complexes that supported the Soviet Union's
+                            nuclear and conventional weapons programs, providing technological expertise and
+                            manufacturing capabilities.</p>
+                    </div>
+                    <div class="step" data-step="aviation">
+                        <h3>Strategic Aviation</h3>
+                        <p>Ukraine possessed strategic bomber aircraft capable of delivering nuclear weapons, providing
+                            an air-based component to complement land-based missile systems.</p>
+                    </div>
+                    <div class="step" data-step="denuclearization">
+                        <h3>Denuclearization</h3>
+                        <p>In December 1994, Ukraine signed the Budapest Memorandum, agreeing to give up all nuclear
+                            weapons inherited from the Soviet Union in exchange for security assurances from the United
+                            States, United Kingdom, and Russia. By 1996, all nuclear warheads had been transferred to
+                            Russia for dismantlement, and Ukraine officially became a non-nuclear state.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="outro">
+            <div class="outro__inner">
+                <h2>The Legacy of Denuclearization</h2>
+                <p>Ukraine's decision to denuclearize made it the first country in history to voluntarily give up a
+                    nuclear arsenal. The security assurances provided in the Budapest Memorandum later became a matter
+                    of significant controversy following Russia's annexation of Crimea in 2014 and the full-scale
+                    invasion in 2022.</p>
+                <p>Is it safer to hold nuclear weapons? Or is it better to get rid of them completely from this world?
+                </p>
+                <p>Which future would you want?</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
