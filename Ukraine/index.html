@@ -13,48 +13,68 @@
 
 <body>
     <main>
-        <section id="intro">
-            <!-- Title always visible -->
-            <div class="intro-section" id="section-title">
-                <h1>Ukraine's Nuclear Facilities in 1994</h1>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="stars" id="stars"></div>
+            <div class="hero-content">
+                <h1>Ukraine's Nuclear Arsenal</h1>
+                <p>Following the collapse of the Soviet Union in 1991, Ukraine inherited the world's third-largest
+                    nuclear arsenal.
+                    Explore what happened next.</p>
             </div>
-
-            <!-- First scrollable section -->
-            <div class="intro-section" id="section-paragraph">
-                <div class="fade-element">
-                    <p>Following the collapse of the Soviet Union, Ukraine inherited one of the world's largest nuclear
-                        arsenals.</p>
-                </div>
-            </div>
-
-            <!-- Second scrollable section -->
-            <div class="intro-section" id="section-h3-1">
-                <div class="fade-element">
-                    <h3>In 1994, Ukraine had world's third largest nuclear arsenal</h3>
-                </div>
-            </div>
-
-            <!-- Chart sections below - keep these the same -->
-            <div class="intro-section" id="section-chart-1">
-                <div id="chart-container-1994" class="chart-container"></div>
-            </div>
-
-            <div class="intro-section" id="section-h3-2">
-                <div class="fade-element">
-                    <h3>By 2001, it was gone</h3>
-                </div>
-            </div>
-
-            <div class="intro-section" id="section-chart-2">
-                <div id="chart-container-2001" class="chart-container"></div>
-            </div>
-
-            <div class="intro-section" id="section-final">
-                <p class="post-charts">This map explores the various nuclear and military facilities that existed in
-                    Ukraine in 1994.</p>
+            <div class="scroll-indicator">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5v14M5 12l7 7 7-7" />
+                </svg>
             </div>
         </section>
 
+        <!-- 1994 Arsenal Data Section -->
+        <section class="data-section">
+            <div class="data-content">
+                <div class="section-header centered">
+                    <h2>In 1994, Ukraine has the world's third-Largest nuclear arsenal...</h2>
+                </div>
+                <div class="info-card">
+                    <div class="counter" id="counter-warheads">1,700</div>
+                    <p>nuclear warheads on Ukrainian soil</p>
+                </div>
+                <div id="chart-container-1994" class="chart-container"></div>
+                <p>After the Soviet Union dissolved, Ukraine found itself with a massive nuclear arsenal including
+                    ICBMs, strategic bombers, and cruise missiles - all equipped with nuclear warheads pointed at the
+                    United States.</p>
+            </div>
+        </section>
+
+        <!-- 2001 Arsenal Data Section -->
+        <section class="data-section">
+            <div class="data-content">
+                <div class="section-header centered">
+                    <h2>...by 2001, it was gone.</h2>
+                </div>
+                <div class="info-card">
+                    <div class="counter" id="counter-zero">0</div>
+                    <p>nuclear warheads remained</p>
+                </div>
+                <div id="chart-container-2001" class="chart-container"></div>
+                <p>In a historic decision, Ukraine agreed to completely dismantle its nuclear arsenal in exchange for
+                    security assurances from Russia, the United States, and the United Kingdom.</p>
+            </div>
+        </section>
+
+        <!-- Transition to Map -->
+        <section class="transition-section">
+            <div class="transition-content">
+                <h2>Exploring Ukraine's Nuclear Facilities</h2>
+                <p>This map reveals the various nuclear and military facilities that existed in Ukraine in 1994,
+                    before the country agreed to denuclearize under the <span class="highlight">Budapest
+                        Memorandum</span>.</p>
+                <p>Scroll down to explore different types of facilities...</p>
+            </div>
+        </section>
+
+        <!-- Map section with steps -->
         <section id="scrolly">
             <div class="scrolly__inner">
                 <div class="sticky-thing">
@@ -112,6 +132,7 @@
             </div>
         </section>
 
+        <!-- Outro section -->
         <section id="outro">
             <div class="outro__inner">
                 <h2>The Legacy of Denuclearization</h2>
@@ -124,6 +145,14 @@
                 <p>Which future would you want?</p>
             </div>
         </section>
+
+        <button id="map-toggle" class="map-toggle" aria-label="Toggle map view">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+        </button>
     </main>
 
     <script src="script.js"></script>
