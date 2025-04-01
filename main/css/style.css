@@ -1,6 +1,6 @@
 /* Japan CSS */
 
-body {
+#japan.body {
   background-color: rgb(41, 42, 42);
   font-family: "Times New Roman", Times, serif;
   font-size: 40px;
@@ -18,7 +18,7 @@ body {
         font-size: 20px;
 }
  } */
-.main-text {
+#japan.main-text {
   width: 50%;
   margin: 100px auto;
   text-align: center;
@@ -28,36 +28,36 @@ body {
   align-items: center;
 }
 /*style the paragraphs*/
-.hidden {
+#japan.hidden {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 1.5s ease-out, transform 1.5s ease-out;
 }
-.visible {
+#japan.visible {
   opacity: 1;
   transition: opacity 1.5s ease-in;
   transform: translateY(20px);
 }
-p {
+#japan.p {
   font-weight: bold;
 }
-span {
+#japan.span {
   display: block;
 }
-.intro-hiroshima1 {
+#japan.intro-hiroshima1 {
   opacity: 1;
   transition: opacity 1.5s ease;
 }
-.intro-hiroshima2 {
+#japan.intro-hiroshima2 {
   opacity: 1;
   transition: opacity 1.5s ease;
 }
-.intro-hiroshima3,
-.intro-hiroshima4 {
+#japan.intro-hiroshima3,
+#japan.intro-hiroshima4 {
   font-size: 30px;
 }
 
-h1 {
+#japan.h1 {
   margin-bottom: 20px;
   font-size: 24px;
   color: #f9f7f7;
@@ -68,7 +68,7 @@ svg#chart-survivor {
   border-radius: 4px;
   color: black;
 }
-.tooltip {
+#japan.tooltip {
   position: absolute;
   background-color: white;
   border: 1px solid #ccc;
@@ -80,41 +80,109 @@ svg#chart-survivor {
   display: none;
   color: black;
 }
-#scrolly {
+
+/* Ukraine CSS */
+
+.body {
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.map-container {
   position: relative;
+  width: 1000px;
+  height: 700px;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background-color: #1a1a1a;
+  padding: 50px;
 }
-.scroll_graphi {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: auto;
+
+.svg {
   width: 100%;
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+  height: 100%;
 }
 
-.scroll_graphic.is-fixed {
-  bottom: 0;
-  top: auto;
+.ukraine-outline {
+  fill: #2d3748;
+  stroke: #cbd5e0;
+  stroke-width: 1px;
 }
-.scroll_graphic .chart1 {
+
+.facility-point {
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.facility-point:hover {
+  opacity: 1;
+}
+
+.legend {
   position: absolute;
-  right: 1 rem;
-  top: 50%;
-  -moz-transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
+  bottom: 20px;
+  left: 20px;
+  background-color: rgba(40, 40, 40, 0.9);
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-.scroll_text {
-  padding: 0 1rem;
-  max-width: 30 rem;
+.legend h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: white;
 }
-.step {
-  opacity: 0;
-  padding: 1 rem;
-  .step.is-active {
-    opacity: 1;
-  }
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  color: white;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.tooltip {
+  position: absolute;
+  background-color: rgba(40, 40, 40, 0.95);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  border: 1px solid #555;
+  max-width: 200px;
+}
+
+.tooltip p:first-child {
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.title-box {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: rgba(40, 40, 40, 0.9);
+  padding: 12px 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.title-box h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  color: white;
 }
