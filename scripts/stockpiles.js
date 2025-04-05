@@ -71,7 +71,7 @@
       .attr("viewBox", [0, 0, width, height])
       .attr(
         "style",
-        "max-width: 100%; height: auto; overflow: visible; font: 10px sans-serif;"
+        "width: 1000px; height: auto; overflow: visible; font: 12px sans-serif; border: 1px solid #ccc; padding: 10px;"
       );
 
     const chartGroup = svg.append("g");
@@ -189,7 +189,7 @@
     // legend
     const legend = svg
       .append("g")
-      .attr("transform", `translate(${width - marginRight + 20}, 20)`);
+      .attr("transform", `translate(${width - marginRight + 80}, 20)`);
 
     countries.forEach((country, i) => {
       const legendRow = legend

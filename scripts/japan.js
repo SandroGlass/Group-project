@@ -13,7 +13,8 @@
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
-    .attr("transform", `translate(${margin.left}, ${margin.top})`);
+    .attr("transform", `translate(${margin.left}, ${margin.top})`)
+    .attr("style", "font: 10px sans-serif");
 
   d3.csv("data/survivor_data.csv")
     .then((data) => {
@@ -69,7 +70,7 @@
         .append("circle")
         .attr("cx", (d) => xScale(d.year))
         .attr("cy", (d) => yScale(d.survivors))
-        .attr("r", 2)
+        // .attr("r", 2)
         .attr("fill", "blue")
         .attr("stroke", "black")
         .attr("stroke-width", 1);
@@ -91,7 +92,8 @@
             .attr("id", "tooltip")
             .attr("x", xScale(d.year) + 10)
             .attr("y", yScale(d.survivors) - 10)
-            .text(`Year:${d.year}, Survivors:${d.survivors}`)
+            .text(`${d.year}: ${d.survivors} survivors`)
+            // .html(`<strong>${d.year}:</strong> ${d.survivors} survivors`)
             .attr("font-size", "12px")
             .attr("fill", "#333");
         })
@@ -114,7 +116,11 @@
           y: height - 100,
         },
       ];
-      const tooltip = d3.select("body").append("div").attr("class", "tooltip");
+      const tooltip = d3
+        .select("body")
+        .append("div")
+        .attr("class", "tooltip")
+        .attr("style", "font: 13px sans-serif");
 
       const highlightYears = [1945, 1957, 1980, 2023, 2025];
       const yearDescriptions = {
@@ -169,6 +175,17 @@
         .on("mouseout", () => {
           tooltip.style("display", "none");
         });
+
+      // svg
+      //   .selectAll(".manualCircles")
+      //   .data(manualPoints)
+      //   .append(circle)
+      //   .attr("cx", (d) => xScale(d.year))
+      //   .attr("cy", (d) => yScale(d.survivors))
+      //   .attr("r", 2)
+      //   .attr("fill", "blue")
+      //   .attr("stroke", "black")
+      //   .attr("stroke-width", 1);
     })
     .catch((error) => {
       console.error("Error loading the CSV file", error);

@@ -19,9 +19,7 @@
   let tooltip = null;
 
   // SVG dimensions
-  //   const width = mapContainer.clientWidth;
-  //   const height = mapContainer.clientHeight;
-  const width = 1000;
+  const width = 800;
   const height = 500;
 
   // Create the SVG element
@@ -367,7 +365,7 @@
         .attr("r", 8)
         .attr("fill", typeColors[point.type] || "#999")
         .attr("stroke", "#fff")
-        .attr("stroke-width", 1.5)
+        .attr("stroke-width", 0.8)
         .attr("opacity", 0.8)
         .on("mouseenter", function (event) {
           showTooltip(point, x, y);
