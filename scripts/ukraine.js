@@ -29,13 +29,6 @@
     .attr("width", width)
     .attr("height", height);
 
-  // Create a title box
-  const titleBox = document.createElement("div");
-  titleBox.className = "title-box";
-  titleBox.innerHTML =
-    "<h2>In 1994, Ukraine had over 10 military nuclear facilities</h2>";
-  mapContainer.appendChild(titleBox);
-
   // Initialize tooltip
   function createTooltip() {
     tooltip = document.createElement("div");
@@ -67,7 +60,7 @@
     for (const type in typeColors) {
       legendHTML += `
               <div class="legend-item">
-                  <div class="legend-color" style="background-color: ${typeColors[type]}"></div>
+                  <div class="legend-color" style="background-color: ${typeColors[type]};"></div>
                   <span>${type}</span>
               </div>
           `;
@@ -364,8 +357,8 @@
         .attr("cy", y)
         .attr("r", 8)
         .attr("fill", typeColors[point.type] || "#999")
-        .attr("stroke", "#fff")
-        .attr("stroke-width", 0.8)
+        .attr("stroke", "#555")
+        .attr("stroke-width", 0.5)
         .attr("opacity", 0.8)
         .on("mouseenter", function (event) {
           showTooltip(point, x, y);

@@ -1,3 +1,12 @@
+/* Overall CSS */
+
+body {
+  font-family: Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
 /* Stockpiles CSS */
 svg#linechart {
   border: 1px solid #ccc;
@@ -6,92 +15,31 @@ svg#linechart {
 
 /* Japan CSS */
 
-#japan.body {
-  background-color: rgb(41, 42, 42);
-  font-family: Helvetica, sans-serif;
-  font-size: 40px;
-  min-height: 200vh;
-  margin: 0;
-}
-/* @media (min-width:768px){
-    body{
-        font-size: 18px;
-}
-}
-@media (min-width: 1200px) {
-    body{
-        font-size: 20px;
-}
- } */
-#japan.main-text {
-  width: 50%;
-  margin: 100px auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-/*style the paragraphs*/
-#japan.hidden {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
-}
-#japan.visible {
-  opacity: 1;
-  transition: opacity 1.5s ease-in;
-  transform: translateY(20px);
-}
-#japan.p {
-  font-weight: bold;
-}
-#japan.span {
-  display: block;
-}
-#japan.intro-hiroshima1 {
-  opacity: 1;
-  transition: opacity 1.5s ease;
-}
-#japan.intro-hiroshima2 {
-  opacity: 1;
-  transition: opacity 1.5s ease;
-}
-#japan.intro-hiroshima3,
-#japan.intro-hiroshima4 {
-  font-size: 30px;
-}
-
-#japan.h1 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #f9f7f7;
-}
 svg#chart-survivor {
   border: 1px solid #ccc;
   background-color: white;
-  /* border-radius: 4px; */
   color: black;
 }
-#japan.tooltip {
+
+.tooltip {
+  font-family: Helvetica, sans-serif;
   position: absolute;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 5px;
-  font-size: 12px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: rgba(40, 40, 40, 0.95);
+  color: white;
+  padding: 10px 12px;
+  font-size: 13px;
   pointer-events: none;
-  display: none;
-  color: black;
+  border: 1px solid #555;
+  max-width: 200px;
+  text-align: left;
+}
+
+.japan .h3 {
+  font-family: Helvetica, sans-serif;
+  font-size: 30px;
 }
 
 /* Ukraine CSS */
-
-.body {
-  background-color: #121212;
-  color: #ffffff;
-}
 
 .map-container {
   position: relative;
@@ -106,46 +54,37 @@ svg#chart-survivor {
   padding-bottom: 50px;
 }
 
-.svg {
-  width: 100%;
-  height: 100%;
-}
-
-.ukraine-outline {
-  fill: #2d3748;
+.map-container .ukraine-outline {
+  fill: #c7c7c7;
   stroke: #000000;
-  stroke-width: 1px;
+  stroke-width: 0.5px;
 }
 
-.facility-point {
+.map-container .facility-point {
   cursor: pointer;
   transition: opacity 0.2s;
 }
 
-.facility-point:hover {
+.map-container .facility-point:hover {
   opacity: 1;
 }
 
-.legend {
+#map-container .legend {
   position: absolute;
   top: 20px;
   right: 0px;
   padding-top: 0px;
-  /* background-color: rgba(40, 40, 40, 0.9); */
   padding: 15px;
-  /* border: 1px solid #000000; */
-  /* border-radius: 6px; */
-  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); */
 }
 
-.legend h3 {
+#map-container .legend h3 {
   font-family: Helvetica, sans-serif;
   font-size: 12px;
   font-weight: bold;
   color: rgb(0, 0, 0);
 }
 
-.legend-item {
+#map-container .legend-item {
   font-family: Helvetica, sans-serif;
   font-size: 12px;
   display: flex;
@@ -154,19 +93,20 @@ svg#chart-survivor {
   color: rgb(0, 0, 0);
 }
 
-.legend-color {
+#map-container .legend-color {
   width: 16px;
   height: 16px;
   border-radius: 50%;
   margin-right: 8px;
+  border: 0.5px solid #555;
 }
 
-.tooltip {
+#map-container .tooltip {
   font-family: Helvetica, sans-serif;
   position: absolute;
   background-color: rgba(40, 40, 40, 0.95);
   color: white;
-  padding: 8px 12px;
+  padding: 2px 12px;
   /* border-radius: 4px; */
   font-size: 13px;
   pointer-events: none;
@@ -175,26 +115,7 @@ svg#chart-survivor {
   border: 1px solid #555;
   max-width: 200px;
 }
-
-.tooltip p:first-child {
+#map-container .tooltip p:first-child {
   font-weight: bold;
   margin-bottom: 3px;
-}
-
-.title-box {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background-color: rgba(40, 40, 40, 0.9);
-  padding: 12px 15px;
-  /* border-radius: 6px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); */
-}
-
-.title-box h2 {
-  font-family: Helvetica, sans-serif;
-  font-size: 18px;
-  font-weight: lighter;
-  margin: 0;
-  color: white;
 }

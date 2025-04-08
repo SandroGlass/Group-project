@@ -93,7 +93,6 @@
             .attr("x", xScale(d.year) + 10)
             .attr("y", yScale(d.survivors) - 10)
             .text(`${d.year}: ${d.survivors} survivors`)
-            // .html(`<strong>${d.year}:</strong> ${d.survivors} survivors`)
             .attr("font-size", "12px")
             .attr("fill", "#333");
         })

@@ -207,7 +207,8 @@
         .attr("x", 15)
         .attr("y", 5)
         .attr("dy", "0.32em")
-        .text(country);
+        .text(country)
+        .attr("font-size", 11);
     });
   }
 })();
