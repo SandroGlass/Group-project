@@ -56,9 +56,6 @@ svg#chart-survivor {
   /* Center horizontally */
 }
 
-#map-container.map-container {
-  margin-left: 100px;
-}
 
 .map-container .ukraine-outline {
   fill: #c7c7c7;
