@@ -1,11 +1,11 @@
 (function () {
   const margin = {
-    top: 60,
+    top: 50,
     right: 30,
     bottom: 60,
     left: 70,
   };
-  const width = 800 - margin.left - margin.right;
+  const width = 900 - margin.left - margin.right;
   const height = 400 - margin.top - margin.bottom;
 
   const svg = d3
@@ -15,7 +15,7 @@
     .append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`)
     .attr("style", "font: 10px sans-serif");
-
+  //read data
   d3.csv("data/survivor_data.csv")
     .then((data) => {
       data.forEach((d) => {
@@ -23,7 +23,7 @@
         d.survivors = parseFloat(d.survivors.replace(/,/g, ""));
       });
       console.log(data);
-
+      //scales
       const xScale = d3.scaleLinear().domain([1945, 2030]).range([0, width]);
       const yScale = d3
         .scaleLinear()
@@ -31,7 +31,7 @@
         .range([height, 0]);
 
       svg.append("g").call(d3.axisLeft(yScale));
-
+      //x-axis label
       svg
         .append("g")
         .attr("transform", `translate(0, ${height})`)
@@ -51,7 +51,15 @@
         .text("Year")
         .attr("font-size", "12px")
         .attr("fill", "#333");
-
+      //y-axis label
+      svg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("x", -margin.left+20)
+        .attr("y", margin.top-70)
+        .attr("text-anchor", "start")
+        .text("Number of Survivors")
+        .attr("font-size", "12px")
+      //create line for chart
       const line = d3
         .line()
         .x((d) => xScale(d.year))
@@ -68,6 +76,7 @@
         .data(data)
         .enter()
         .append("circle")
+        .attr("class", "data-point")
         .attr("cx", (d) => xScale(d.year))
         .attr("cy", (d) => yScale(d.survivors))
         // .attr("r", 2)
@@ -75,105 +84,115 @@
         .attr("stroke", "black")
         .attr("stroke-width", 1);
 
-      svg
-        .selectAll(".verticle-hover-area")
-        .data(data)
-        .enter()
-        .append("rect")
-        .attr("x", (d) => xScale(d.year) - 10)
-        .attr("y", 0)
-        .attr("width", 20)
-        .attr("height", height)
-        .attr("fill", "none")
-        .attr("pointer-events", "all")
-        .on("mouseover", (event, d) => {
-          svg
-            .append("text")
-            .attr("id", "tooltip")
-            .attr("x", xScale(d.year) + 10)
-            .attr("y", yScale(d.survivors) - 10)
-            .text(`${d.year}: ${d.survivors} survivors`)
-            .attr("font-size", "12px")
-            .attr("fill", "#333");
-        })
-        .on("mouseout", () => {
-          d3.select("#tooltip").remove();
-        });
-      const manualPoints = [
-        {
-          year: 1945,
-          description:
-            "In August, the first atomic bombs are dropped on the cities of Hiroshima and Nagasaki. By the end of the year, more than 213,000 people have died.",
-          x: xScale(1945),
-          y: height - 50,
-        },
-        {
-          year: 2025,
-          description:
-            "The city of Hiroshima prepares a project that allows people to ask questions of survivors, using AI to pull out the best answers form their pre-recorded testimony.",
-          x: xScale(2025),
-          y: height - 100,
-        },
-      ];
+      
+
+      // svg
+      //   .selectAll(".verticle-hover-area")
+      //   .data(data)
+      //   .enter()
+      //   .append("rect")
+      //   .attr("x", (d) => xScale(d.year) - 10)
+      //   .attr("y", 0)
+      //   .attr("width", 20)
+      //   .attr("height", height)
+      //   .attr("fill", "none")
+      //   .attr("pointer-events", "all")
+      //   .on("mouseover", (event, d) => {
+      // svg
+      //   .append("text")
+      //   .attr("id", "tooltip")
+      //   .attr("x", xScale(d.year) + 10)
+      //   .attr("y", yScale(d.survivors) - 10)
+      //   // .text(`${d.year}: ${d.survivors} survivors`)
+      //   // .attr("font-size", "12px")
+      //   // .attr("fill", "#333");
+      //   })
+      //   .on("mouseout", () => {
+      //     d3.select("#tooltip").remove();
+      //   });
+
+      // const manualPoints = [
+      //   {
+      //     year: 1945,
+      //     description:
+      //       "In August, the first atomic bombs are dropped on the cities of Hiroshima and Nagasaki. By the end of the year, more than 213,000 people have died.",
+      //     x: xScale(1945),
+      //     y: height - 50,
+      //   },
+      //   {
+      //     year: 2025,
+      //     description:
+      //       "The city of Hiroshima prepares a project that allows people to ask questions of survivors, using AI to pull out the best answers form their pre-recorded testimony.",
+      //     x: xScale(2025),
+      //     y: height - 100,
+      //   },
+      // ];
       const tooltip = d3
         .select("body")
         .append("div")
         .attr("class", "tooltip")
         .attr("style", "font: 13px sans-serif");
 
-      const highlightYears = [1945, 1957, 1980, 2023, 2025];
+      //ommitted 1945 and 2025
+      const highlightYears = [1957, 1980, 2023];
       const yearDescriptions = {
         1957: "Japan's Atomic Bomb Survivors Support Act becomes law.",
         1980: "The number of survivors peaks at 372,264.",
         2023: "The number of survivors has dwindled to 106,825. The survivors' average age is 85.",
       };
-      svg
-        .selectAll(".highlight-circle")
-        .data(data.filter((d) => highlightYears.includes(d.year)))
-        .enter()
-        .append("rect")
-        .attr("x", (d) => xScale(d.year) - 10)
-        .attr("y", 0)
-        .attr("width", 20)
-        .attr("height", height)
-        .attr("fill", "none")
-        .attr("pointer-events", "all")
-        .on("mouseover", (event, d) => {
-          tooltip
-            .style("left", `${event.pageX + 10}px`)
-            .style("top", `${event.pageY - 20}px`)
-            .style("display", "block")
-            .html(
-              `<strong>${d.year}</strong>: ${
-                yearDescriptions[d.year] || `${d.survivors} survivors`
-              }`
-            );
-        })
-        .on("mouseout", () => {
-          tooltip.style("display", "none");
-        });
 
-      svg
-        .selectAll(".manual-over-area")
-        .data(manualPoints)
-        .enter()
-        .append("rect")
-        .attr("x", (d) => d.x - 10)
-        .attr("y", 0)
-        .attr("width", 20)
-        .attr("height", height)
-        .attr("fill", "none")
-        .attr("pointer-events", "all")
-        .on("mouseover", (event, d) => {
-          tooltip
-            .style("left", `${event.pageX + 10}px`)
-            .style("top", `${event.pageY - 20}px`)
-            .style("display", "block")
-            .html(`<strong>${d.year}</strong>: ${d.description}`);
-        })
-        .on("mouseout", () => {
-          tooltip.style("display", "none");
-        });
+
+        svg.selectAll(".tooltip-circle")
+          .data(data.filter((d) => highlightYears.includes(d.year)))
+          .enter()
+          .append("circle")
+          .attr("cx", (d) => xScale(d.year))
+          .attr("cy", (d) => yScale(d.survivors))
+          .attr("r", 4)
+          .attr("fill", "red")
+          .attr("stroke", "black")
+          .attr("stroke-width", 1)
+          .attr("class", "tooltip-circle")
+          .on("mouseover", (event, d) => {
+            tooltip
+              .style("left", `${event.pageX + 10}px`)
+              .style("top", `${event.pageY - 20}px`)
+              .style("display", "block")
+              .html(
+                `<strong>${d.year}</strong>: ${
+                  yearDescriptions[d.year] || `${d.survivors} survivors`
+                }`
+              );
+          })
+          .on("mouseout", () => {
+            tooltip.style("display", "none");
+          });;
+      // svg
+      //   .selectAll(".manual-over-area")
+      //   .data(manualPoints)
+      //   .enter()
+      //   .append("rect")
+      //   .attr("x", (d) => d.x - 10)
+      //   .attr("y", 0)
+      //   .attr("width", 20)
+      //   .attr("height", height)
+      //   .attr("fill", "none")
+      //   .attr("pointer-events", "all")
+      //   .on("mouseover", (event, d) => {
+      //     tooltip
+      //       .style("left", `${event.pageX + 10}px`)
+      //       .style("top", `${event.pageY - 20}px`)
+      //       .style("display", "block")
+      //       .html(`<strong>${d.year}</strong>: ${d.description}`);
+      //   })
+      //   .on("mouseout", () => {
+      //     tooltip.style("display", "none");
+      //   });
+      // svg.selectAll(".highlight-circle")
+      //   .data(data.filter((d) => highlightYears.includes(d.year)))
+      //   .enter()
+      //   .append("circle")
+
 
       // svg
       //   .selectAll(".manualCircles")
