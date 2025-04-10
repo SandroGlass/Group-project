@@ -1,6 +1,6 @@
 // source for code: https://observablehq.com/@d3/multi-line-chart/2
 (function () {
-  d3.csv("data/final_stockpile_line.csv", d3.autoType).then((data) => {
+  d3.csv("data/stockpile2_line.csv", d3.autoType).then((data) => {
     data.forEach((d) => {
       d.Year = +d.Year;
 
@@ -19,7 +19,7 @@
   const width = 928;
   const height = 600;
   const marginTop = 20;
-  const marginRight = 30;
+  const marginRight = 20;
   const marginBottom = 30;
   const marginLeft = 80;
 
@@ -48,10 +48,8 @@
       "#FF00FF",
       "#00FFFF",
       "#32CD32",
-      "#007FFF",
       "#FF7F00",
       "#00CED1",
-      "#FF3030",
     ];
 
     const colour = d3
@@ -59,7 +57,7 @@
       .domain(Object.keys(stockpileData[0]).slice(1))
       .range(custom_colours);
 
-    const chartContainer = d3.select("#linechart1");
+    const chartContainer = d3.select("#linechart2");
     // chartContainer.selectAll("svg").remove();
 
     const svg = chartContainer
@@ -91,7 +89,7 @@
       .append("g")
       .attr("transform", `translate(${marginLeft},0)`)
       .call(d3.axisLeft(y))
-      // .call((g) => g.select(".domain").remove())
+      //   .call((g) => g.select(".domain").remove())
       .call((g) =>
         g
           .append("text")
@@ -129,7 +127,7 @@
       .selectAll("path")
       .data(dataByCountry)
       .join("path")
-      .attr("stroke", (d) => (d.name === "World" ? "black" : colour(d.name)))
+      .attr("stroke", (d) => colour(d.name))
       .style("mix-blend-mode", "multiply")
       .attr("d", (d) => line(d.values));
 
