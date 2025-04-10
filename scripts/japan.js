@@ -83,8 +83,67 @@
         .attr("fill", "blue")
         .attr("stroke", "black")
         .attr("stroke-width", 1);
-
       
+        //gridlines
+      const verticalGrid=svg.append("line")
+        .attr("stroke", "gray")
+        .attr("stroke-dasharray", "4 2")
+        .attr("stroke-width", 1)
+        .attr("y1", 0)
+        .attr("y2", height)
+        .attr("visibility", "hidden");
+
+      const horizontalGrid=svg.append("line")
+        .attr("stroke", "gray")
+        .attr("stroke-dasharray", "4 2")
+        .attr("stroke-width", 1)
+        .attr("x1", 0)
+        .attr("x2", width)
+        .attr("visibility", "hidden");
+      //area for mouse to hover
+      svg.append("rect")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("fill", "none")
+        .attr("pointer-events", "all")
+        .on("mousemove", function(event){
+          const [mx, my]=d3.pointer(event);
+          const x0=xScale.invert(mx);
+
+          const bisect=d3.bisector(d=>d.year).left;
+          const i=bisect(data, x0);
+          const d0=data[i-1];
+          const d1=data[i];
+          const d=(!d0||(d1&&(x0-d0.x>d1.x-x0)))?d1:d0;
+
+          const dx=xScale(d.year);
+          const dy=yScale(d.survivors);
+          const distance=Math.abs(mx-dx);
+
+          if (distance<10){
+            verticalGrid
+              .attr("x1", dx)
+              .attr("x2", dx)
+              .attr("y1", dy-10)
+              .attr("y2", height)
+              .attr("visibility", "visible");
+
+            horizontalGrid
+              .attr("y1", dy)
+              .attr("y2", dy)
+              .attr("x1", 0)
+              .attr("x2", dx+10)
+              .attr("visibility", "visible");
+          }else{
+            verticalGrid.attr("visibility", "hidden");
+            horizontalGrid.attr("visibility", "hidden");
+          }
+        })
+        .on("mouseout", ()=>{
+          verticalGrid.attr("visibility", "hidden");
+          horizontalGrid.attr("visibility", "hidden");
+        })
+          
 
       // svg
       //   .selectAll(".verticle-hover-area")
