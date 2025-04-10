@@ -41,17 +41,26 @@ svg#chart-survivor {
 
 /* Ukraine CSS */
 
+#ukraine {
+  margin-right: 0px;
+}
+
 .map-container {
-  position: relative;
-  width: 900px;
+  position: absolute;
+  width: 1200px;
   height: 500px;
   overflow: hidden;
   /* border-radius: 8px; */
   border: 1px solid #ccc;
   background-color: #ffffff;
-  padding-right: 100px;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 0px;
+}
+
+#map-container.map-container {
+  margin-left: 100px;
 }
 
 .map-container .ukraine-outline {
