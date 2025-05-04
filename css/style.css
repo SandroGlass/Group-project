@@ -29,6 +29,7 @@ body {
   margin-left: 350px;
   margin-right: 350px;
   font-size: 17px;
+  position: relative;
 }
 
 #standfirst {
@@ -40,6 +41,19 @@ body {
   font-weight: 500;
   font-size: 15px;
   color: #555;
+}
+
+.box-out {
+  border: 1px solid rgb(103, 8, 76);
+  width: 350px;
+  text-align: left;
+  padding: 15px;
+  margin-left: 350px;
+  margin-right: 350px;
+  font-size: 17px;
+  position: relative;
+  background-color: rgb(255, 242, 244);
+  color: rgb(103, 8, 76);
 }
 
 /* Stockpiles CSS */
