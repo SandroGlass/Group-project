@@ -2,18 +2,58 @@
 
 body {
   font-family: Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   text-align: center;
+  /* color: white;
+  background-color: #000000; */
 }
 
 .headline {
   justify-content: center;
   align-items: center;
   height: 400px;
-  margin-top: 300px;
+  margin-top: 250px;
   display: inline-block;
   vertical-align: middle;
+  font-size: 17px;
+}
+
+.headline #p {
+  text-align: left;
+}
+
+.paragraph {
+  text-align: left;
+  padding: 10px;
+  margin-left: 350px;
+  margin-right: 350px;
+  font-size: 17px;
+  position: relative;
+}
+
+#standfirst {
+  text-align: center;
+}
+.chart-title {
+  text-align: left;
+  margin-left: 270px;
+  font-weight: 500;
+  font-size: 15px;
+  color: #555;
+}
+
+.box-out {
+  border: 1px solid rgb(103, 8, 76);
+  width: 350px;
+  text-align: left;
+  padding: 15px;
+  margin-left: 350px;
+  margin-right: 350px;
+  font-size: 17px;
+  position: relative;
+  background-color: rgb(255, 242, 244);
+  color: rgb(103, 8, 76);
 }
 
 /* Stockpiles CSS */

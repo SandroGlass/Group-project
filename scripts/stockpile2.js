@@ -116,7 +116,8 @@
     const line = d3
       .line()
       .x((d) => x(d.Year))
-      .y((d) => y(d.Stockpile));
+      .y((d) => y(d.Stockpile))
+      .defined((d) => d.Stockpile != null);
 
     const path = chartGroup
       .append("g")
