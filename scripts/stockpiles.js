@@ -42,16 +42,17 @@
 
     // colours from flourish, L2R on csv
     const custom_colours = [
+      "#000000",
+      "#007FFF",
+      "#FF3030",
       "#FFD700",
       "#9B30FF",
+      "#00CED1",
       "#FF69B4",
+      "#32CD32",
       "#FF00FF",
       "#00FFFF",
-      "#32CD32",
-      "#007FFF",
       "#FF7F00",
-      "#00CED1",
-      "#FF3030",
     ];
 
     const colour = d3
@@ -130,7 +131,7 @@
       .selectAll("path")
       .data(dataByCountry)
       .join("path")
-      .attr("stroke", (d) => (d.name === "World" ? "black" : colour(d.name)))
+      .attr("stroke", (d) => colour(d.name))
       .style("mix-blend-mode", "multiply")
       .attr("d", (d) => line(d.values));
 
@@ -200,7 +201,7 @@
         .append("rect")
         .attr("width", 10)
         .attr("height", 10)
-        .attr("fill", country === "World" ? "black" : colour(country));
+        .attr("fill", colour(country));
 
       legendRow
         .append("text")

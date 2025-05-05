@@ -44,12 +44,12 @@
     const custom_colours = [
       "#FFD700",
       "#9B30FF",
+      "#00CED1",
       "#FF69B4",
+      "#32CD32",
       "#FF00FF",
       "#00FFFF",
-      "#32CD32",
       "#FF7F00",
-      "#00CED1",
     ];
 
     const colour = d3
