@@ -185,8 +185,3 @@ svg#chart-survivor {
 .map-container .facility-point:hover {
   opacity: 1;
 }
-
-.source{
-  text-align: left;
-  margin-left: 360px;
-}
