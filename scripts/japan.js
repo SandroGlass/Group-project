@@ -209,7 +209,7 @@
           .attr("cy", (d) => yScale(d.survivors))
           .attr("r", 4)
           .attr("fill", "red")
-          .attr("stroke", "black")
+          .attr("stroke", "red")
           .attr("stroke-width", 1)
           .attr("class", "tooltip-circle")
           .on("mouseover", (event, d) => {
