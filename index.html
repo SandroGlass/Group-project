@@ -10,14 +10,151 @@
 </head>
 
 <body>
-    <div class="banner">
-        <p>banner goes here</p>
-    </div>
-    <div class="headline">
-        <h1>Headline Placeholder</h1>
-        <p>standfirst goes here</p>
-        <p>by Sandro Gvindadze, Haruka Ono and Ratna Rekha Manukonda</p>
-    </div>
+    <section id="banner">
+        <section id="header">
+            <div class="headline">
+                <h1>Headline Placeholder</h1>
+                <p>standfirst goes here</p>
+                <p>by Sandro Gvindadze, Haruka Ono and Ratna Rekha Manukonda</p>
+            </div>
+        </section>
+
+        <section id="scroll">
+            <div class="scroll_graphic">
+                <div class="map">
+                    <img src="images/mp.png" alt="world_map">
+                    <div class="dots">
+                        <div class="dot dot-1">
+                            <span class="tooltip"> China </span>
+                        </div>
+                        <div class="dot dot-2">
+                            <span class="tooltip"> United States </span>
+                        </div>
+                        <div class="dot dot-3">
+                            <span class="tooltip"> United Kingdom </span>
+                        </div>
+                        <div class="dot dot-4">
+                            <span class="tooltip"> Russia </span>
+                        </div>
+                        <div class="dot dot-5">
+                            <span class="tooltip"> India </span>
+                        </div>
+                        <div class="dot dot-6">
+                            <span class="tooltip"> Pakistan </span>
+                        </div>
+                        <div class="dot dot-7">
+                            <span class="tooltip"> North Korea </span>
+                        </div>
+                        <div class="dot dot-8">
+                            <span class="tooltip"> France </span>
+                        </div>
+                        <div class="dot dot-9">
+                            <span class="tooltip">Israel </span>
+                        </div>
+                        <div class="dot dot-10">
+                            <span class="tooltip">Ukraine </span>
+                        </div>
+                        <div class="dot dot-11">
+                            <span class="tooltip">Japan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll_text">
+                <div class="step" data-step="1">
+                    <style>
+                    </style>
+                    <p>The number of nuclear weapons in the world increased this year for the first time in decades.
+                    </p>
+                </div>
+                <div class="step" data-step="2">
+                    <p>China is the clear leader in nuclear expansion, having tripled its nuclear arsenal to 600 in
+                        the
+                        last
+                        six years.</p>
+                </div>
+                <div class="step" data-step="3">
+                    <p>The UK’s expansion is more subtle. It raised the limit on how many nuclear weapons it can
+                        hold
+                        from
+                        225 to 260.</p>
+                </div>
+                <div class="step" data-step="4">
+                    <p>Ukraine, a country torn by war, no longer has a nuclear arsenal to increase. Today, many
+                        Ukrainians
+                        want it back.
+                    </p>
+                </div>
+                <div class="step" data-step="5">
+                    <p> Meanwhile, in Japan - the only country ever attacked with nuclear bombs - survivors are
+                        urging
+                        the
+                        world to remember the past and resist repeating it.
+                    </p>
+                </div>
+                <div class="step" data-step="6">
+                    <p> These increase and tensions are among the reasons why the scientists moved the Doomsday
+                        Clock,
+                        which
+                        warns about humanity's danger of self-destruction, closer to midnight than ever before.</p>
+                </div>
+            </div>
+        </section>
+        <script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
+        <script src="https://unpkg.com/scrollama"></script>
+        <script>
+
+            // Initialize scrollama
+            const scroller = scrollama();
+
+            function zoom(step) {
+                const map = d3.select(".map");
+
+                let transform;
+                switch (step) {
+                    case 0:
+                        transform = "scale(1) translate(0px, 0px)"; //headline
+                        break;
+                    case 1:
+                        transform = "scale(2) translate(-410px, 10px)"; // china
+                        break;
+                    case 2:
+                        transform = "scale(2) translate(-5px, 100px)"; // uk
+                        break;
+                    case 3:
+                        transform = "scale(2.2) translate(-140px, 100px)"; // ukraine
+                        break;
+                    case 4:
+                        transform = "scale(2) translate(-585px, 50px)"; // japan
+                        break;
+                    default:
+                        transform = "scale(1) translate(0px, 0px)";
+                }
+                map.style("transform", transform);
+            }
+
+            function init() {
+                const steps = d3.selectAll('.step');
+
+                scroller
+                    .setup({
+                        step: '.step',
+                        offset: 0.5,
+                        debug: false
+                    })
+                    .onStepEnter(response => {
+                        steps.classed('is-active', (d, i) => i === response.index);
+                        zoom(response.index);
+                    });
+
+                window.addEventListener('resize', scroller.resize);
+            }
+
+            // kick it off
+            init();
+        </script>
+    </section>
 
     <div class="paragraph" id="1">
         <p>
@@ -40,7 +177,10 @@
     </div>
     <div id="linechart2">
     </div>
-    <div class="source"><p>Source: <a href="https://fas.org/initiative/status-world-nuclear-forces/" style="color:rgb(213, 204, 204)">Federation of American Scientists</a></p></div>
+    <div class="source">
+        <p>Source: <a href="https://fas.org/initiative/status-world-nuclear-forces/"
+                style="color:rgb(213, 204, 204)">Federation of American Scientists</a></p>
+    </div>
     <div class="paragraph" id="2">
         <p>Britain is now prioritizing expansion "without much transparency" about what weapons remain operational
             versus
@@ -66,7 +206,11 @@
     <div id="ukraine">
         <div id="map-container" class="map-container"></div>
     </div>
-    <div class="source"><p>Source: <a href="https://www.press.jhu.edu/books/title/12715/inheriting-bomb?srsltid=AfmBOooWRdbbWj4Tyr-8gRP-gQex3vRIjVVC9cYI6zIfG1PtGRzLRMx7" style="color:rgb(213, 204, 204)">"Inheriting the Bomb" by Mariana Budjeryn</a></p></div>
+    <div class="source">
+        <p>Source: <a
+                href="https://www.press.jhu.edu/books/title/12715/inheriting-bomb?srsltid=AfmBOooWRdbbWj4Tyr-8gRP-gQex3vRIjVVC9cYI6zIfG1PtGRzLRMx7"
+                style="color:rgb(213, 204, 204)">"Inheriting the Bomb" by Mariana Budjeryn</a></p>
+    </div>
 
     <div class="paragraph" id="4">
         <p>Ukraine inherited the world’s third-biggest nuclear arsenal in 1991 before giving them up as part of Budapest
@@ -96,7 +240,10 @@
     <div id="japan">
         <svg id="chart-survivor"></svg>
     </div>
-    <div class="source"><p>Source: <a href="https://www.mhlw.go.jp/stf/newpage_13419.html" style="color:rgb(213, 204, 204)">Ministry of Health, Labour, and Welfare</a></p></div>
+    <div class="source">
+        <p>Source: <a href="https://www.mhlw.go.jp/stf/newpage_13419.html" style="color:rgb(213, 204, 204)">Ministry of
+                Health, Labour, and Welfare</a></p>
+    </div>
 
     <div class="paragraph" id="5">
         <p>“We have to keep telling and recording our stories to let people know what happened” insists Satoshi Tanaka,
