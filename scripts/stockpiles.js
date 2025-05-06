@@ -70,7 +70,7 @@
       .attr("viewBox", [0, 0, width, height])
       .attr(
         "style",
-        "width: 900px; height: auto; overflow: visible; font: 12px sans-serif; border: 1px solid #ccc; padding: 10px;"
+        "width: 900px; height: auto; overflow: visible; font: 12px sans-serif; border: 1px solid #ccc; padding: 10px; color: black; background-color: #ffffff;"
       );
 
     const chartGroup = svg.append("g");
