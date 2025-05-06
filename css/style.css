@@ -5,8 +5,8 @@ body {
   font-size: 12px;
   font-weight: 500;
   text-align: center;
-  /* color: white;
-  background-color: #000000; */
+  background-color: #262626;
+  color: white;
 }
 
 .headline {
@@ -40,7 +40,7 @@ body {
   margin-left: 270px;
   font-weight: 500;
   font-size: 15px;
-  color: #555;
+  color: whitesmoke;
 }
 
 .box-out {
