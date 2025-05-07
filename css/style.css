@@ -12,9 +12,15 @@ body {
   text-align: center;
 }
 
-.about {
+.about-button {
+  color: white;
+  text-align: right;
+  margin-right: 20px;
+  font-size: 14px;
+  top: 2px;
+  right: 2px;
+  z-index: 1100;
   position: absolute;
-  margin: auto;
 }
 
 .headline {
@@ -214,7 +220,6 @@ svg#chart-survivor {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 2rem;
   pointer-events: none;
 }
 
@@ -462,7 +467,7 @@ img {
   border: #000000 1px solid;
   position: absolute;
   left: 30px;
-  z-index: 20px;
+  z-index: 20;
 }
 
 .dot:hover .tooltip {
