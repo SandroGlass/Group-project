@@ -68,6 +68,7 @@ body {
   position: relative;
   background-color: rgb(255, 242, 244);
   color: rgb(103, 8, 76);
+  text-indent:20px;
 }
 
 /* Stockpiles CSS */
@@ -527,4 +528,9 @@ img {
 .map {
   transition: transform 1s ease;
   transform-origin: center;
+}
+/*Hiroshima container*/
+.hiroshima_container{
+display: flexbox;
+flex-direction: column;
 }
