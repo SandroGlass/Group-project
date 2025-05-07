@@ -17,10 +17,20 @@ body {
   text-align: right;
   margin-right: 20px;
   font-size: 14px;
-  top: 2px;
-  right: 2px;
+  top: 5px;
+  right: 5px;
   z-index: 1100;
   position: absolute;
+}
+
+#about-box {
+  /* border: 1px solid rgb(255, 255, 255); */
+  padding: 15px;
+  padding-top: 200px;
+  font-size: 15px;
+  margin: auto;
+  margin-left: 350px;
+  margin-right: 350px;
 }
 
 .headline {
@@ -68,7 +78,7 @@ body {
   position: relative;
   background-color: rgb(255, 242, 244);
   color: rgb(103, 8, 76);
-  text-indent:20px;
+  text-indent: 20px;
 }
 
 /* Stockpiles CSS */
@@ -530,7 +540,7 @@ img {
   transform-origin: center;
 }
 /*Hiroshima container*/
-.hiroshima_container{
-display: flexbox;
-flex-direction: column;
+.hiroshima_container {
+  display: flexbox;
+  flex-direction: column;
 }
