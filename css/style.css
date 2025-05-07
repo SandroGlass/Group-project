@@ -82,7 +82,7 @@ body {
   margin-bottom: 40px;
   font-size: 17px;
   position: relative;
-  background-color: white;
+  background-color: rgb(180, 180, 180);
   color: black;
   display: flex;
   align-items: center;
