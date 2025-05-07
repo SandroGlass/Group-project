@@ -5,7 +5,7 @@
     bottom: 60,
     left: 70,
   };
-  const width = 900 - margin.left - margin.right;
+  const width = 922 - margin.left - margin.right;
   const height = 400 - margin.top - margin.bottom;
 
   const svg = d3
@@ -52,13 +52,14 @@
         .attr("font-size", "12px")
         .attr("fill", "#333");
       //y-axis label
-      svg.append("text")
+      svg
+        .append("text")
         .attr("text-anchor", "middle")
-        .attr("x", -margin.left+20)
-        .attr("y", margin.top-70)
+        .attr("x", -margin.left + 20)
+        .attr("y", margin.top - 70)
         .attr("text-anchor", "start")
         .text("Number of Survivors")
-        .attr("font-size", "12px")
+        .attr("font-size", "12px");
       //create line for chart
       const line = d3
         .line()
@@ -83,9 +84,10 @@
         .attr("fill", "blue")
         .attr("stroke", "black")
         .attr("stroke-width", 1);
-      
-        //gridlines
-      const verticalGrid=svg.append("line")
+
+      //gridlines
+      const verticalGrid = svg
+        .append("line")
         .attr("stroke", "gray")
         .attr("stroke-dasharray", "4 2")
         .attr("stroke-width", 1)
@@ -93,7 +95,8 @@
         .attr("y2", height)
         .attr("visibility", "hidden");
 
-      const horizontalGrid=svg.append("line")
+      const horizontalGrid = svg
+        .append("line")
         .attr("stroke", "gray")
         .attr("stroke-dasharray", "4 2")
         .attr("stroke-width", 1)
@@ -101,30 +104,31 @@
         .attr("x2", width)
         .attr("visibility", "hidden");
       //area for mouse to hover
-      svg.append("rect")
+      svg
+        .append("rect")
         .attr("width", width)
         .attr("height", height)
         .attr("fill", "none")
         .attr("pointer-events", "all")
-        .on("mousemove", function(event){
-          const [mx, my]=d3.pointer(event);
-          const x0=xScale.invert(mx);
+        .on("mousemove", function (event) {
+          const [mx, my] = d3.pointer(event);
+          const x0 = xScale.invert(mx);
 
-          const bisect=d3.bisector(d=>d.year).left;
-          const i=bisect(data, x0);
-          const d0=data[i-1];
-          const d1=data[i];
-          const d=(!d0||(d1&&(x0-d0.x>d1.x-x0)))?d1:d0;
+          const bisect = d3.bisector((d) => d.year).left;
+          const i = bisect(data, x0);
+          const d0 = data[i - 1];
+          const d1 = data[i];
+          const d = !d0 || (d1 && x0 - d0.x > d1.x - x0) ? d1 : d0;
 
-          const dx=xScale(d.year);
-          const dy=yScale(d.survivors);
-          const distance=Math.abs(mx-dx);
+          const dx = xScale(d.year);
+          const dy = yScale(d.survivors);
+          const distance = Math.abs(mx - dx);
 
-          if (distance<10){
+          if (distance < 10) {
             verticalGrid
               .attr("x1", dx)
               .attr("x2", dx)
-              .attr("y1", dy-10)
+              .attr("y1", dy - 10)
               .attr("y2", height)
               .attr("visibility", "visible");
 
@@ -132,18 +136,17 @@
               .attr("y1", dy)
               .attr("y2", dy)
               .attr("x1", 0)
-              .attr("x2", dx+10)
+              .attr("x2", dx + 10)
               .attr("visibility", "visible");
-          }else{
+          } else {
             verticalGrid.attr("visibility", "hidden");
             horizontalGrid.attr("visibility", "hidden");
           }
         })
-        .on("mouseout", ()=>{
+        .on("mouseout", () => {
           verticalGrid.attr("visibility", "hidden");
           horizontalGrid.attr("visibility", "hidden");
-        })
-          
+        });
 
       // svg
       //   .selectAll(".verticle-hover-area")
@@ -200,32 +203,32 @@
         2023: "The number of survivors has dwindled to 106,825. The survivors' average age is 85.",
       };
 
-
-        svg.selectAll(".tooltip-circle")
-          .data(data.filter((d) => highlightYears.includes(d.year)))
-          .enter()
-          .append("circle")
-          .attr("cx", (d) => xScale(d.year))
-          .attr("cy", (d) => yScale(d.survivors))
-          .attr("r", 4)
-          .attr("fill", "red")
-          .attr("stroke", "red")
-          .attr("stroke-width", 1)
-          .attr("class", "tooltip-circle")
-          .on("mouseover", (event, d) => {
-            tooltip
-              .style("left", `${event.pageX + 10}px`)
-              .style("top", `${event.pageY - 20}px`)
-              .style("display", "block")
-              .html(
-                `<strong>${d.year}</strong>: ${
-                  yearDescriptions[d.year] || `${d.survivors} survivors`
-                }`
-              );
-          })
-          .on("mouseout", () => {
-            tooltip.style("display", "none");
-          });;
+      svg
+        .selectAll(".tooltip-circle")
+        .data(data.filter((d) => highlightYears.includes(d.year)))
+        .enter()
+        .append("circle")
+        .attr("cx", (d) => xScale(d.year))
+        .attr("cy", (d) => yScale(d.survivors))
+        .attr("r", 4)
+        .attr("fill", "red")
+        .attr("stroke", "red")
+        .attr("stroke-width", 1)
+        .attr("class", "tooltip-circle")
+        .on("mouseover", (event, d) => {
+          tooltip
+            .style("left", `${event.pageX + 10}px`)
+            .style("top", `${event.pageY - 20}px`)
+            .style("display", "block")
+            .html(
+              `<strong>${d.year}</strong>: ${
+                yearDescriptions[d.year] || `${d.survivors} survivors`
+              }`
+            );
+        })
+        .on("mouseout", () => {
+          tooltip.style("display", "none");
+        });
       // svg
       //   .selectAll(".manual-over-area")
       //   .data(manualPoints)
@@ -251,7 +254,6 @@
       //   .data(data.filter((d) => highlightYears.includes(d.year)))
       //   .enter()
       //   .append("circle")
-
 
       // svg
       //   .selectAll(".manualCircles")

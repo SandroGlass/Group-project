@@ -60,11 +60,15 @@ body {
   text-align: center;
 }
 .chart-title {
-  text-align: left;
-  margin-left: 270px;
-  font-weight: 500;
-  font-size: 15px;
-  color: whitesmoke;
+  text-align: center;
+  font-weight: 600;
+  margin-left: 274px;
+  margin-right: 274px;
+  padding: 1px;
+  padding-top: 3px;
+  font-size: 16px;
+  color: black;
+  background-color: white;
 }
 
 .box-out {
@@ -82,15 +86,15 @@ body {
 }
 
 /* Stockpiles CSS */
-svg#linechart1 {
-  border: 1px solid #ccc;
+#linechart1,
+#linechart2 {
   color: black;
 }
 
 /* Japan CSS */
 
 svg#chart-survivor {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   background-color: white;
   color: black;
 }
@@ -126,7 +130,7 @@ svg#chart-survivor {
   height: 550px;
   /* Increased from 500px */
   overflow: hidden;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   background-color: #ffffff;
   margin: 0 auto;
   /* Center horizontally */
