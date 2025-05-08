@@ -38,29 +38,24 @@
     tooltip.style.zIndex = "1000";
     tooltip.style.borderRadius = "0"; // No rounded edges
     tooltip.style.padding = "10px";
-    tooltip.style.boxShadow = "0 2px 8px rgba(0,0,0,0.2)";
+    tooltip.style.boxShadow = "0 2px 5px rgba(0,0,0,0.3)";
     tooltip.style.maxWidth = "300px";
-    tooltip.style.backgroundColor = "#ffffff"; // White background
-    tooltip.style.color = "#000000"; // Black text
+    tooltip.style.backgroundColor = "#333"; // Dark background
+    tooltip.style.color = "#fff"; // White text
     tooltip.style.fontSize = "14px";
     tooltip.style.lineHeight = "1.4";
-    tooltip.style.borderWidth = "2px"; // Slightly thicker border for emphasis
-    tooltip.style.borderStyle = "solid";
+    tooltip.style.border = "none"; // No borders
     mapContainer.appendChild(tooltip);
   }
 
-  // Show tooltip function - MODIFIED to prevent cutoff at edges and apply colored borders
+  // Show tooltip function - MODIFIED to prevent cutoff at edges
   function showTooltip(point, x, y) {
     // Use custom description if available, otherwise show type
     const description = point.description || point.type;
 
-    // Set border color based on facility type
-    const borderColor = typeColors[point.type] || "#999";
-    tooltip.style.borderColor = borderColor;
-
     // Create tooltip content with styled elements
     tooltip.innerHTML = `
-      <div style="font-weight: bold; font-size: 16px; margin-bottom: 6px; color: ${borderColor};">
+      <div style="font-weight: bold; font-size: 16px; margin-bottom: 6px;">
         ${point.address}
       </div>
       <div style="margin: 0;">
