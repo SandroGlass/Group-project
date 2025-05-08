@@ -73,8 +73,8 @@ body {
 
 .box-out {
   border: 1px solid black;
-  /* width: 350px; */
   text-align: left;
+  max-width: 800px;
   padding: 10px;
   margin-left: 350px;
   margin-right: 350px;
