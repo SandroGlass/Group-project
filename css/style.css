@@ -41,7 +41,7 @@ body {
   margin-top: 250px;
   display: inline-block;
   vertical-align: middle;
-  font-size: 17px;
+  font-size: 70px;
 }
 
 .headline #p {
@@ -71,25 +71,7 @@ body {
   color: white;
 }
 
-.box-out#2 {
-  border: 1px solid black;
-  text-align: left;
-  max-width: 800px;
-  padding: 10px;
-  margin-left: 350px;
-  margin-right: 350px;
-  margin-bottom: 30px;
-  margin-top: 30px;
-  font-size: 17px;
-  position: relative;
-  background-color: rgb(180, 180, 180);
-  color: black;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.box-out#1 {
+.box-out {
   border: 1px solid black;
   text-align: left;
   max-width: 800px;
