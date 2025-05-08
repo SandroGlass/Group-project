@@ -34,18 +34,74 @@
     tooltip = document.createElement("div");
     tooltip.className = "tooltip";
     tooltip.style.display = "none";
+    tooltip.style.position = "absolute";
+    tooltip.style.zIndex = "1000";
+    tooltip.style.borderRadius = "0"; // No rounded edges
+    tooltip.style.padding = "10px";
+    tooltip.style.boxShadow = "0 2px 8px rgba(0,0,0,0.2)";
+    tooltip.style.maxWidth = "300px";
+    tooltip.style.backgroundColor = "#ffffff"; // White background
+    tooltip.style.color = "#000000"; // Black text
+    tooltip.style.fontSize = "14px";
+    tooltip.style.lineHeight = "1.4";
+    tooltip.style.borderWidth = "2px"; // Slightly thicker border for emphasis
+    tooltip.style.borderStyle = "solid";
     mapContainer.appendChild(tooltip);
   }
 
-  // Show tooltip function - MODIFIED to use custom descriptions
+  // Show tooltip function - MODIFIED to prevent cutoff at edges and apply colored borders
   function showTooltip(point, x, y) {
     // Use custom description if available, otherwise show type
     const description = point.description || point.type;
-    tooltip.innerHTML = `<p>${point.address}</p><p>${description}</p>`;
-    tooltip.style.left = `${x + 10}px`;
-    tooltip.style.top = `${y - 60}px`;
+
+    // Set border color based on facility type
+    const borderColor = typeColors[point.type] || "#999";
+    tooltip.style.borderColor = borderColor;
+
+    // Create tooltip content with styled elements
+    tooltip.innerHTML = `
+      <div style="font-weight: bold; font-size: 16px; margin-bottom: 6px; color: ${borderColor};">
+        ${point.address}
+      </div>
+      <div style="margin: 0;">
+        ${description}
+      </div>
+    `;
+
+    // Make the tooltip visible
     tooltip.style.display = "block";
+
+    // Get tooltip dimensions after making it visible
+    const tooltipRect = tooltip.getBoundingClientRect();
+    const tooltipWidth = tooltipRect.width;
+    const tooltipHeight = tooltipRect.height;
+
+    // Calculate initial position relative to point
+    let left = x + 15;
+    let top = y - tooltipHeight - 15;
+
+    // Adjust position if necessary to prevent clipping
+    // Check right edge
+    if (left + tooltipWidth > mapContainer.clientWidth) {
+      left = x - tooltipWidth - 15;
+    }
+
+    // Check top edge
+    if (top < 0) {
+      top = y + 25;
+    }
+
+    // Check bottom edge
+    if (top + tooltipHeight > mapContainer.clientHeight) {
+      top = mapContainer.clientHeight - tooltipHeight - 10;
+    }
+
+    // Position the tooltip
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
   }
+
+  // Helper function not needed anymore since we're not adjusting colors
 
   // Hide tooltip function
   function hideTooltip() {
@@ -201,7 +257,7 @@
       lat: 49.41849,
       lon: 26.97600,
       type: "Strategic missile divisions",
-      description: "The Soviet 19th Missile Division once controlled 90 SS-19 Stiletto intercontinental ballistic missiles, each capable of carrying six nuclear warheads. After Ukraine’s independence, these were dismantled or sent to Russia by 2005."
+      description: "The Soviet 19th Missile Division once controlled 90 SS-19 Stiletto intercontinental ballistic missiles, each capable of carrying six nuclear warheads. After Ukraine's independence, these were dismantled or sent to Russia by 2005."
     },
     {
       address: "Khmelnytskyi",
@@ -215,7 +271,7 @@
       lat: 46.97586,
       lon: 31.99397,
       type: "Major military-industrial enterprise",
-      description: "Mykolaiv’s Naval Shipyard once constructed vessels designed to carry nuclear weapons, including submarines and aircraft carriers, during the Soviet era. While it built platforms capable of nuclear weapons deployment, the facility itself never housed nuclear warheads or materials. After Ukraine's independence, it transitioned to conventional shipbuilding."
+      description: "Mykolaiv's Naval Shipyard once constructed vessels designed to carry nuclear weapons, including submarines and aircraft carriers, during the Soviet era. While it built platforms capable of nuclear weapons deployment, the facility itself never housed nuclear warheads or materials. After Ukraine's independence, it transitioned to conventional shipbuilding."
     },
     {
       address: "Nadvirna",
@@ -236,7 +292,7 @@
       lat: 49.23202,
       lon: 28.46798,
       type: "Missile Army",
-      description: "Vinnytsia hosted the Soviet 43rd Missile Army’s headquarters, controlling SS-11 Sego (single-warhead), SS-19 Stiletto (six-warhead), and SS-24 Scalpel (multi-warhead) nuclear missiles. These were dismantled by 2001 after Ukraine gave up nuclear weapons, and the site is now inactive."
+      description: "Vinnytsia hosted the Soviet 43rd Missile Army's headquarters, controlling SS-11 Sego (single-warhead), SS-19 Stiletto (six-warhead), and SS-24 Scalpel (multi-warhead) nuclear missiles. These were dismantled by 2001 after Ukraine gave up nuclear weapons, and the site is now inactive."
     },
     {
       address: "Makariv-1",
@@ -285,7 +341,7 @@
       lat: 48.46802,
       lon: 35.04177,
       type: "Major military-industrial enterprise",
-      description: "The Pivdenne Design Bureau (est. 1954) designed Soviet nuclear-capable missiles, including the powerful SS-18 ‘Satan’ missile. While never producing nuclear warheads, it created the rockets that could deliver them. After independence, it shifted to civilian spacecraft development."
+      description: "The Pivdenne Design Bureau (est. 1954) designed Soviet nuclear-capable missiles, including the powerful SS-18 'Satan' missile. While never producing nuclear warheads, it created the rockets that could deliver them. After independence, it shifted to civilian spacecraft development."
     },
     {
       address: "Kharkiv",
@@ -306,7 +362,7 @@
       lat: 50.61212,
       lon: 32.3873,
       type: "Strategic aviation",
-      description: "Home base for the 184th Bomber Regiment which operated 19 Tu-160 supersonic strategic bombers, the Soviet Union’s most advanced nuclear delivery platform. 8 were transferred to Russia by 2000, with the remainder dismantled under international supervision. The base is now inactive."
+      description: "Home base for the 184th Bomber Regiment which operated 19 Tu-160 supersonic strategic bombers, the Soviet Union's most advanced nuclear delivery platform. 8 were transferred to Russia by 2000, with the remainder dismantled under international supervision. The base is now inactive."
     },
     {
       address: "Kyiv",
@@ -419,7 +475,7 @@
   // Initialize the map on page load
   document.addEventListener("DOMContentLoaded", initMap);
 
-  // Handle window resize
+  // Handle window resize and cleanup on page unload
   window.addEventListener("resize", () => {
     // Clear existing content
     svg.selectAll("*").remove();
@@ -442,8 +498,8 @@
     renderMap();
     createLegend();
     createTooltip();
-
-    // Re-add the title
-    mapContainer.appendChild(titleBox);
   });
+
+  // No need for tooltip cleanup on unload since it's attached to mapContainer
+  // which will be cleaned up when the page unloads
 })();
