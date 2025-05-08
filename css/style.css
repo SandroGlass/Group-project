@@ -477,12 +477,11 @@ img {
 
 .dot .tooltip {
   visibility: hidden;
-  width: 95px;
-  height: auto;
+  width: 150px;
+  max-height: 80px;
   background-color: rgb(95, 94, 94);
   color: #cacaca;
   text-align: left;
-  padding: 5px;
   font-size: 13px;
   border: #000000 1px solid;
   position: absolute;
