@@ -28,24 +28,10 @@ body {
   /* border: 1px solid rgb(255, 255, 255); */
   padding: 15px;
   padding-top: 30px;
-  font-size: 15px;
+  font-size: 17px;
   margin: auto;
-  margin-left: 350px;
-  margin-right: 350px;
-}
-
-.headline {
-  justify-content: center;
-  align-items: center;
-  height: 400px;
-  margin-top: 250px;
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 70px;
-}
-
-.headline #p {
-  text-align: left;
+  margin-left: 345px;
+  margin-right: 345px;
 }
 
 .paragraph {
@@ -63,8 +49,8 @@ body {
 .chart-title {
   text-align: center;
   font-weight: 600;
-  margin-left: 274px;
-  margin-right: 274px;
+  margin: auto;
+  width: 700px;
   padding: 1px;
   padding-top: 3px;
   font-size: 20px;
@@ -76,13 +62,13 @@ body {
   text-align: left;
   max-width: 800px;
   padding: 10px;
-  margin-left: 350px;
-  margin-right: 350px;
+  margin-left: 359px;
+  margin-right: 359px;
   margin-bottom: 30px;
   margin-top: 30px;
   font-size: 17px;
   position: relative;
-  background-color: rgb(180, 180, 180);
+  background-color: rgb(255, 255, 255);
   color: black;
   display: flex;
   align-items: center;
@@ -129,7 +115,7 @@ svg#chart-survivor {
 
 .map-container {
   position: relative;
-  width: 922px;
+  width: 750px;
   /* Increased from 900px */
   height: 550px;
   /* Increased from 500px */
@@ -161,8 +147,8 @@ svg#chart-survivor {
 
 #map-container .legend {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  bottom: 20px;
+  left: 20px;
   /* Moved from 0px to 20px */
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.9);
@@ -243,12 +229,12 @@ svg#chart-survivor {
 }
 
 .headline h1 {
-  font-size: 3rem;
+  font-size: 50px;
   margin-bottom: 1rem;
 }
 
 .headline p {
-  font-size: 1.2rem;
+  font-size: 30px;
   margin: 0.5rem 0;
 }
 .h1 {
@@ -492,7 +478,6 @@ img {
   visibility: visible;
 }
 
-/* Minimal scrollama styling */
 #scroll {
   position: relative;
   color: #f2f2f2;
@@ -534,7 +519,7 @@ img {
   opacity: 0.7;
   transition: transform 0.6s ease, transform-origin 0.6s ease;
   text-align: left;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .step.is-active {

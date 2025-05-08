@@ -5,7 +5,7 @@
     bottom: 60,
     left: 70,
   };
-  const width = 922 - margin.left - margin.right;
+  const width = 750 - margin.left - margin.right;
   const height = 400 - margin.top - margin.bottom;
 
   const svg = d3

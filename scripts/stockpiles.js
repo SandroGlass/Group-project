@@ -70,7 +70,7 @@
       .attr("viewBox", [0, 0, width, height])
       .attr(
         "style",
-        "width: 902px; height: auto; overflow: visible; font: 12px sans-serif; padding: 10px; color: black; background-color: #ffffff; align-items: center;"
+        "width: 730px; height: auto; overflow: visible; font: 12px sans-serif; padding: 10px; color: black; background-color: #ffffff; align-items: center; margin-bottom: 0px;"
       );
 
     const chartGroup = svg.append("g");
@@ -79,13 +79,15 @@
     var xAxisGroup = chartGroup
       .append("g")
       .attr("transform", `translate(0,${height - marginBottom})`)
+      .attr("font-size", 20)
       .call(
         d3
           .axisBottom(x)
           .ticks(width / 80)
           .tickSizeOuter(0)
           .tickFormat(d3.format("d"))
-      );
+      )
+      .call((g) => g.selectAll(".tick text").attr("font-size", "12px"));
 
     // Add the y axis.
     var yAxisGroup = chartGroup
@@ -100,8 +102,10 @@
           .attr("y", 10)
           .attr("fill", "black")
           .attr("text-anchor", "start")
-          .text("↑ Number of Nuclear Weapons")
-      );
+          .text("Number of Nuclear Weapons")
+          .attr("font-size", "12px")
+      )
+      .call((g) => g.selectAll(".tick text").attr("font-size", "12px"));
 
     const countries = Object.keys(stockpileData[0]).slice(1);
     //grouping stockpiles by country
@@ -137,7 +141,7 @@
 
     // brush!!!
 
-    // interactive tip
+    // interactive tooltip
     const dot = svg.append("g").attr("display", "none");
 
     dot.append("circle").attr("r", 2.5);
@@ -199,8 +203,8 @@
 
       legendRow
         .append("rect")
-        .attr("width", 10)
-        .attr("height", 10)
+        .attr("width", 11)
+        .attr("height", 11)
         .attr("fill", colour(country));
 
       legendRow
@@ -209,7 +213,7 @@
         .attr("y", 5)
         .attr("dy", "0.32em")
         .text(country)
-        .attr("font-size", 11);
+        .attr("font-size", 13);
     });
   }
 })();
