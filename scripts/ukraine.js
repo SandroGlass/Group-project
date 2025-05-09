@@ -19,15 +19,17 @@
   let tooltip = null;
 
   // SVG dimensions
-  const width = 700;
+  const width = 800;
   const height = 500;
 
   // Create the SVG element
   const svg = d3
     .select(mapContainer)
     .append("svg")
-    .attr("width", width)
-    .attr("height", height);
+    .style("width", "90%")
+    .style("max-width", "800px")
+    .style("height", "auto")
+    .attr("viewBox", "0 0 800 500");
 
   // Initialize tooltip
   function createTooltip() {

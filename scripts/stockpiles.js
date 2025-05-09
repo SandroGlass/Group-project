@@ -16,8 +16,8 @@
     updateChart();
   });
 
-  const width = 922;
-  const height = 600;
+  const width = 780;
+  const height = 500;
   const marginTop = 20;
   const marginRight = 30;
   const marginBottom = 30;
@@ -61,21 +61,18 @@
       .range(custom_colours);
 
     const chartContainer = d3.select("#linechart1");
-    // chartContainer.selectAll("svg").remove();
 
     const svg = chartContainer
       .append("svg")
-      .attr("width", width)
-      .attr("height", height)
       .attr("viewBox", [0, 0, width, height])
       .attr(
         "style",
-        "width: 730px; height: auto; overflow: visible; font: 12px sans-serif; padding: 10px; color: black; background-color: #ffffff; align-items: center; margin-bottom: 0px;"
+        "width: 90%; max-width: 780px; height: auto; overflow: visible; font: 12px sans-serif; padding: 10px; color: black; background-color: #ffffff; align-items: center; margin-bottom: 0px;"
       );
 
     const chartGroup = svg.append("g");
 
-    // Add the x axis.
+    // Add the x axis
     var xAxisGroup = chartGroup
       .append("g")
       .attr("transform", `translate(0,${height - marginBottom})`)
@@ -89,7 +86,7 @@
       )
       .call((g) => g.selectAll(".tick text").attr("font-size", "12px"));
 
-    // Add the y axis.
+    // Add the y axis
     var yAxisGroup = chartGroup
       .append("g")
       .attr("transform", `translate(${marginLeft},0)`)
@@ -119,7 +116,7 @@
       };
     });
 
-    // Draw the lines.
+    // draw the lines
     const line = d3
       .line()
       .x((d) => x(d.Year))
@@ -188,8 +185,6 @@
       path.style("mix-blend-mode", "multiply").style("stroke", null);
       dot.attr("display", "none");
     }
-
-    //highlighted sentences
 
     // legend
     const legend = svg

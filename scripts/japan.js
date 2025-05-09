@@ -5,13 +5,16 @@
     bottom: 60,
     left: 70,
   };
-  const width = 750 - margin.left - margin.right;
-  const height = 400 - margin.top - margin.bottom;
+  const width = 800 - margin.left - margin.right;
+  const height = 480 - margin.top - margin.bottom;
 
   const svg = d3
     .select("#chart-survivor")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    // .attr("width", width + margin.left + margin.right)
+    // .attr("height", height + margin.top + margin.bottom)
+    .attr("width", "90%")
+    .attr("max-width", "800px")
+    .attr("viewBox", "0 0 800 500")
     .append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`)
     .attr("style", "font: 10px sans-serif");
