@@ -28,8 +28,8 @@
     .append("svg")
     .style("width", "90%")
     .style("max-width", "800px")
-    .style("height", "auto")
-    .attr("viewBox", "0 0 800 500");
+    .style("height", "600")
+    .attr("viewBox", "0 0 800 600");
 
   // Initialize tooltip
   function createTooltip() {
