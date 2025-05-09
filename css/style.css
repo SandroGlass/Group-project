@@ -123,6 +123,10 @@ svg#chart-survivor {
   font-size: 30px;
 }
 
+.hiroshima_container img {
+  max-width: 100%;
+}
+
 /* Ukraine CSS */
 
 .map-container {
@@ -219,6 +223,7 @@ svg#chart-survivor {
   box-sizing: border-box;
   max-width: 800px;
   width: 90%;
+  font-size: small;
 }
 
 /* Banner CSS */
@@ -446,18 +451,6 @@ svg#chart-survivor {
   animation: ua_dot 5s infinite;
 }
 
-/* @keyframes ua_dot {
-  0% {
-    background-color: #d8d6d6;
-  }
-  50% {
-    background-color: #000000;
-  }
-  100% {
-    background-color: #d8d6d6;
-  }
-} */
-
 /* Japan */
 .dot-11 {
   top: 47.5%;
@@ -465,18 +458,6 @@ svg#chart-survivor {
   border: #d8d6d6 2px dotted;
   animation: jp_dot 5s infinite;
 }
-
-/* @keyframes jp_dot {
-  0% {
-    background-color: #d8d6d6;
-  }
-  50% {
-    background-color: #000000;
-  }
-  100% {
-    background-color: #d8d6d6;
-  }
-} */
 
 .dot .tooltip {
   visibility: hidden;
@@ -591,6 +572,20 @@ svg#chart-survivor {
     justify-content: center;
   }
 
+  .step {
+    margin-bottom: 60vh;
+    width: 90%;
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  .step:first-child {
+    margin-top: 10vh;
+  }
+
+  .scroll_graphic {
+    height: 100vh;
+  }
   .box-out {
     flex-direction: column;
   }
