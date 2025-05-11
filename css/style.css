@@ -4,8 +4,8 @@ html,
 body {
   height: 100%;
   width: 100%;
-  font-family: Helvetica, sans-serif;
-  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
   background-color: #262626;
   color: white;
   text-align: center;
@@ -245,12 +245,12 @@ svg#chart-survivor {
 }
 
 .headline h1 {
-  font-size: 50px;
+  font-size: 55px;
   margin-bottom: 1rem;
 }
 
 .headline p {
-  font-size: 30px;
+  font-size: 29px;
   margin: 0.5rem 0;
 }
 .h1 {

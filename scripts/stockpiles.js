@@ -16,7 +16,7 @@
     updateChart();
   });
 
-  const width = 780;
+  const width = 800;
   const height = 500;
   const marginTop = 20;
   const marginRight = 30;
@@ -67,7 +67,7 @@
       .attr("viewBox", [0, 0, width, height])
       .attr(
         "style",
-        "width: 90%; max-width: 780px; height: auto; overflow: visible; font: 12px sans-serif; padding: 10px; color: black; background-color: #ffffff; align-items: center; margin-bottom: 0px;"
+        "width: 90%; max-width: 800px; height: auto; overflow: visible; font: 12px sans-serif; padding: 10px; color: black; background-color: #ffffff; align-items: center; margin-bottom: 0px;"
       );
 
     const chartGroup = svg.append("g");
