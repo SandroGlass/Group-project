@@ -18,21 +18,35 @@
   let hoveredPoint = null;
   let tooltip = null;
 
-  // SVG dimensions
+  // SVG dimensions - FIXED: Made both dimensions consistent
   const width = 800;
-  const height = 500;
+  const height = 600; // Changed from 500 to match viewBox
 
-  // Create the SVG element
+  // Create container for the map and legend with responsive layout
+  const mapInnerContainer = document.createElement("div");
+  mapInnerContainer.className = "map-inner-container";
+  mapInnerContainer.style.display = "flex";
+  mapInnerContainer.style.flexDirection = "column";
+  mapInnerContainer.style.alignItems = "center";
+  mapInnerContainer.style.width = "100%";
+  mapContainer.appendChild(mapInnerContainer);
+
+  // Create the SVG element - FIXED: Consistent dimensions
   const svg = d3
-    .select(mapContainer)
+    .select(mapInnerContainer)
     .append("svg")
     .style("width", "90%")
-    .style("max-width", "800px")
-    .style("height", "600")
-    .attr("viewBox", "0 0 800 600");
+    .style("max-width", width + "px")
+    .style("height", height + "px") // FIXED: Added px
+    .attr("viewBox", `0 0 ${width} ${height}`); // FIXED: Using variables
 
   // Initialize tooltip
   function createTooltip() {
+    // Remove existing tooltip if any
+    if (tooltip && tooltip.parentNode) {
+      tooltip.parentNode.removeChild(tooltip);
+    }
+
     tooltip = document.createElement("div");
     tooltip.className = "tooltip";
     tooltip.style.display = "none";
@@ -46,10 +60,12 @@
     tooltip.style.fontSize = "14px";
     tooltip.style.lineHeight = "1.4";
     tooltip.style.border = "none"; // No borders
-    mapContainer.appendChild(tooltip);
+    // FIXED: Add tooltip to the document body instead of the map container
+    // This prevents positioning issues when the map container has complex layout
+    document.body.appendChild(tooltip);
   }
 
-  // Show tooltip function - MODIFIED to prevent cutoff at edges
+  // Show tooltip function - FIXED: Improved positioning
   function showTooltip(point, x, y) {
     // Use custom description if available, otherwise show type
     const description = point.description || point.type;
@@ -72,24 +88,31 @@
     const tooltipWidth = tooltipRect.width;
     const tooltipHeight = tooltipRect.height;
 
+    // Get the SVG element's position relative to the viewport
+    const svgRect = svg.node().getBoundingClientRect();
+
+    // Calculate the position in the page, accounting for scroll
+    const pageX = svgRect.left + x;
+    const pageY = svgRect.top + y + window.scrollY;
+
     // Calculate initial position relative to point
-    let left = x + 15;
-    let top = y - tooltipHeight - 15;
+    let left = pageX + 15;
+    let top = pageY - tooltipHeight - 15;
 
     // Adjust position if necessary to prevent clipping
     // Check right edge
-    if (left + tooltipWidth > mapContainer.clientWidth) {
-      left = x - tooltipWidth - 15;
+    if (left + tooltipWidth > window.innerWidth) {
+      left = pageX - tooltipWidth - 15;
     }
 
     // Check top edge
-    if (top < 0) {
-      top = y + 25;
+    if (top < window.scrollY) {
+      top = pageY + 25;
     }
 
     // Check bottom edge
-    if (top + tooltipHeight > mapContainer.clientHeight) {
-      top = mapContainer.clientHeight - tooltipHeight - 10;
+    if (top + tooltipHeight > window.scrollY + window.innerHeight) {
+      top = window.scrollY + window.innerHeight - tooltipHeight - 10;
     }
 
     // Position the tooltip
@@ -97,31 +120,43 @@
     tooltip.style.top = `${top}px`;
   }
 
-  // Helper function not needed anymore since we're not adjusting colors
-
   // Hide tooltip function
   function hideTooltip() {
     tooltip.style.display = "none";
   }
 
-  // Create the legend
+  // Create the legend - FIXED: Made responsive
   function createLegend() {
     const legend = document.createElement("div");
     legend.className = "legend";
 
+    // FIXED: Add responsive styling
+    legend.style.position = "relative"; // Changed from absolute/fixed positioning
+    legend.style.backgroundColor = "rgba(255, 255, 255, 0.9)";
+    legend.style.padding = "10px";
+    legend.style.boxSizing = "border-box";
+    legend.style.marginTop = "10px"; // Add space between map and legend
+    legend.style.width = "100%"; // Full width
+    legend.style.maxWidth = width + "px"; // Same max-width as map
+
     let legendHTML = "<h3>Facility Types</h3>";
+    legendHTML += '<div class="legend-grid">'; // FIXED: Add grid container
 
     for (const type in typeColors) {
       legendHTML += `
-              <div class="legend-item">
-                  <div class="legend-color" style="background-color: ${typeColors[type]};"></div>
-                  <span>${type}</span>
+              <div class="legend-item" style="display: inline-block; margin-right: 10px; margin-bottom: 8px; min-width: 120px;">
+                  <div style="display: inline-block; width: 16px; height: 16px; background-color: ${typeColors[type]}; margin-right: 5px; vertical-align: middle;"></div>
+                  <span style="vertical-align: middle; font-size: 14px;">${type}</span>
               </div>
           `;
     }
 
+    legendHTML += '</div>'; // Close grid container
     legend.innerHTML = legendHTML;
-    mapContainer.appendChild(legend);
+
+    // FIXED: Add the legend to the inner container after the SVG
+    // This prevents it from overlapping the map
+    mapInnerContainer.appendChild(legend);
   }
 
   // Ukraine GeoJSON data - hardcoded to avoid CORS issues
@@ -239,7 +274,7 @@
     },
   };
 
-  // Nuclear facilities data - MODIFIED to include custom descriptions
+  // Nuclear facilities data
   const nuclearFacilitiesData = [
     {
       address: "Rivne",
@@ -435,9 +470,46 @@
     },
   ];
 
+  // Add media query styles for mobile responsiveness
+  function addResponsiveStyles() {
+    const styleElement = document.createElement('style');
+    styleElement.textContent = `
+      @media (max-width: 768px) {
+        .legend-item {
+          min-width: 100px !important;
+          margin-right: 5px !important;
+          font-size: 12px !important;
+        }
+        
+        .legend h3 {
+          margin-top: 0;
+          margin-bottom: 8px;
+          font-size: 16px;
+        }
+        
+        .legend-grid {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .legend-item {
+          min-width: 140px !important;
+          font-size: 11px !important;
+        }
+      }
+    `;
+    document.head.appendChild(styleElement);
+  }
+
   // Initialize the map
   function initMap() {
     try {
+      // Add responsive styles first
+      addResponsiveStyles();
+
       createTooltip();
 
       // Use hardcoded data to avoid CORS issues
@@ -453,7 +525,7 @@
 
   // Render the map with the data
   function renderMap() {
-    // Create projection
+    // Create projection - FIXED: Using the updated height
     const projection = d3
       .geoMercator()
       .fitSize([width, height], ukraineGeoData);
@@ -496,22 +568,32 @@
 
   // Handle window resize and cleanup on page unload
   window.addEventListener("resize", () => {
+    // Get the current width of the inner container for responsive sizing
+    const containerWidth = mapInnerContainer.clientWidth * 0.9; // Adjust for the 90% width of SVG
+    // Calculate the height proportionally to maintain aspect ratio
+    const containerHeight = Math.round(containerWidth * (height / width));
+
     // Clear existing content
     svg.selectAll("*").remove();
 
-    // Remove old elements except the original SVG
-    while (mapContainer.firstChild) {
-      if (mapContainer.firstChild === svg.node()) {
-        mapContainer.firstChild.innerHTML = "";
-        break;
-      }
-      mapContainer.removeChild(mapContainer.firstChild);
+    // Remove old elements except the inner container
+    // First, remove the tooltip if it exists
+    if (tooltip && tooltip.parentNode) {
+      tooltip.parentNode.removeChild(tooltip);
     }
 
-    // Readjust SVG dimensions
+    // Then remove the legend (we'll recreate it)
+    const existingLegend = mapInnerContainer.querySelector('.legend');
+    if (existingLegend) {
+      mapInnerContainer.removeChild(existingLegend);
+    }
+
+    // FIXED: Update both dimensions and viewBox to maintain proportions
     svg
-      .attr("width", mapContainer.clientWidth)
-      .attr("height", mapContainer.clientHeight);
+      .style("width", "90%")
+      .style("max-width", width + "px")
+      .style("height", containerHeight + "px")
+      .attr("viewBox", `0 0 ${width} ${height}`);
 
     // Redraw the map
     renderMap();
