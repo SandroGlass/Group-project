@@ -1,4 +1,4 @@
-# Number of nuclear weapons on the rise again
+# Nuclear weapons on the rise again
 
 Read the article [here.](https://ratnarekham.github.io/Group-project/)
 
